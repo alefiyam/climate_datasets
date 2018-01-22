@@ -1,0 +1,9 @@
+venv
+*.pyc
+staticfiles
+.env
+*.egg-info
+*.pot
+*.py[co]
+.tox/
+_pycache_
