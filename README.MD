@@ -1,7 +1,6 @@
 This application is made to show temperature for various regions yearwise.
 
-Configuration details for this application
-------------------------------------------
+Configuration Details :
 
 To configure this appliction into your local machine you must have installed python 
 and pip package of python.
@@ -12,30 +11,29 @@ clone/download this application repository into your local machine.
 then navigate to climate_datasets directory and execute the following commands
 
 
-```
-In climate_datasets directory , execute the command
+In climate_datasets directory , execute the command :
 $ pip install -r requirements.txt
-```
 
-this will install all require application dependencies.
+This will install all require application dependencies.
 As we used the Sqlite database and this database copy already exist in this application so you dont need to do any action with database. 
 
-To get the climate data for various regions yearly execute the command
+
+To get and save the climate data for various regions yearly execute the command :
     $ python manage.py climate_datasets.py
-    '''
+    
     This command is written to scrap the climate data from metoffice website
     and then parsed the html and then find the climate data for UK, England, 
     Wales and Scotland countries.
 
-    this script is crawling Max Temp, Min Temp, Mean Temp, Shunshine and 
+    This script is crawling Max Temp, Min Temp, Mean Temp, Shunshine and 
     Rainfall tables data then saving these data into django models.
-    '''
+    
 
 To start this application just run the following command
 
-    python manage.py runserver
+    $ python manage.py runserver
 
-this will start the Django server, you can access the applicaiton on your browser using this url.
+This will start the Django server, you can access the applicaiton on your browser using this url.
 
 	http://localhost:8000/datasets/
 
@@ -44,7 +42,6 @@ This will show the UK's(default) max , min , mean, rainfall , sunshine for all t
 
 Following actions should be done:
 
-	
 1. To see the temperature of different countries, select the country from the countries dropdown ,    
    You can also search data by year , and temperature type.
 
