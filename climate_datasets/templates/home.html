@@ -1,152 +1,71 @@
 <html>
+
 <head>
-{% load static %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/datatables.jqueryui.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Countries
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                {% if country %} {% for name in country %}
+                <a href="{% url 'datasets' %}?country={{name}}">{{name}}</a> {% endfor %} {% endif %}
+            </div>
+        </div>
+    </div>
+    <table id="climate_datasets" class="display" align="center" style="width:100%">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Year</th>
+                <th>Temperature</th>
+                <th>JAN</th>
+                <th>FEB</th>
+                <th>MAR</th>
+                <th>APR</th>
+                <th>MAY</th>
+                <th>JUN</th>
+                <th>JUL</th>
+                <th>AUG</th>
+                <th>SEP</th>
+                <th>OCT</th>
+                <th>NOV</th>
+                <th>DEC</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+            <tr>
+                <td>{{d.temp_type.country.country_name}}</td>
+                <td>{{d.Year}}</td>
+                <td>{{d.temp_type.temprature_type}}</td>
+                <td>{{d.JAN}}</td>
+                <td>{{d.FEB}}</td>
+                <td>{{d.MAR}}</td>
+                <td>{{d.APR}}</td>
+                <td>{{d.MAY}}</td>
+                <td>{{d.JUN}}</td>
+                <td>{{d.JUL}}</td>
+                <td>{{d.AUG}}</td>
+                <td>{{d.SEP}}</td>
+                <td>{{d.OCT}}</td>
+                <td>{{d.NOV}}</td>
+                <td>{{d.DEC}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/jquery.dataTables.js' %}"></script>
-
-<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
-<link rel="stylesheet" href="{% static 'css/dataTables.jqueryui.min.css' %}">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-#climate_datasets_wrapper {
-  margin-top: 5%;
-}
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-    font-family: Arial;
-}
-
-.navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.dropdown {
-    float: left;
-    overflow: hidden;
-}
-
-.dropdown .dropbtn {
-    font-size: 16px;    
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: grey;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-</style>
-</head>
-<body>
-<div class="navbar">
-  <a href="#home">Home</a>
-  <div class="dropdown">
-    <button class="dropbtn">Countries 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-        {% if country %}
-	    	{% for name in country %}
-	    	  <a href="{% url 'datasets' %}?country={{name}}">{{name}}</a>
-	      {% endfor %}
-	    {% endif %}    
-    </div>
-  </div> 
-</div>
-<table id = "climate_datasets" class = "display" align = "center" style="width:100%" >
-    <thead>
-	    <tr>
-	        <th>Country</th>
-	        <th>Year</th>
-	        <th>Temperature</th>
-	        <th>JAN</th>
-	        <th>FEB</th>
-	        <th>MAR</th>
-	        <th>APR</th>
-	        <th>MAY</th>
-	        <th>JUN</th>
-	        <th>JUL</th>
-	        <th>AUG</th>
-	        <th>SEP</th>
-	        <th>OCT</th>
-	        <th>NOV</th>
-	        <th>DEC</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-  	  {% for d in data %}
-  	  <tr>
-  	    <td>{{d.temp_type.country.country_name}}</td>
-  	    <td>{{d.Year}}</td>
-  	    <td>{{d.temp_type.temprature_type}}</td>
-  	    <td>{{d.JAN}}</td>
-  	    <td>{{d.FEB}}</td>
-  	    <td>{{d.MAR}}</td>
-  	    <td>{{d.APR}}</td>
-  	    <td>{{d.MAY}}</td>
-  	    <td>{{d.JUN}}</td>
-  	    <td>{{d.JUL}}</td>
-  	    <td>{{d.AUG}}</td>
-  	    <td>{{d.SEP}}</td>
-  	    <td>{{d.OCT}}</td>
-  	    <td>{{d.NOV}}</td>
-  	    <td>{{d.DEC}}</td>
-  	  </tr>
-  	  {% endfor %}
-	  </tbody>  
-</table>
-</body>
-
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 
 </html>
-<script>
-$(document).ready(function() {
-    $('table.display').dataTable({
-
-    });
-} );
-</script>
