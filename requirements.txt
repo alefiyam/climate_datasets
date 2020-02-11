@@ -3,7 +3,7 @@ beautifulsoup4==4.6.0
 bs4==0.0.1
 certifi==2017.11.5
 chardet==3.0.4
-Django==1.11.4
+Django==1.11.28
 et-xmlfile==1.0.1
 -e git+https://github.com/mobolic/
 idna==2.6
